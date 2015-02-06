@@ -116,7 +116,7 @@ $(document).ready(function() {
 
     Q.Sprite.extend("End", {
         init: function(p) {
-            this._super(p, { sheet: 'tower' });
+            this._super(p, { sheet: 'tower'});
         }
     });
 
@@ -146,7 +146,7 @@ $(document).ready(function() {
 
     Q.Sprite.extend("MovingEnemy",{
         init: function(p) {
-            this._super(p, { sheet: 'enemy', vx: 100 });
+            this._super(p, { sheet: 'enemy', vx: 100});
 
             // Bounce AI changes whenever they run into something.
             this.add('2d, aiBounce');
@@ -216,19 +216,19 @@ $(document).ready(function() {
 
         stage.insert(new Q.MovingEnemy({ x: 800, y: 0 }));
 
-        stage.insert(new Q.End({ x: titleLayer.p.w - 16, y: 48 }));
+        stage.insert(new Q.End({ x: (titleLayer.p.tiles[2].length - 3/2) * 32, y: 34 }));
     });
 
     // ## Asset Loading and Game Launch
     // Q.load can be called at any time to load additional assets
     // assets that are already loaded will be skipped
     // The callback will be triggered when everything is loaded
-    Q.load('sprites.png, sprites.json, level.json, tiles.png, background-wall.png', function() {
+    Q.load('sprites128.png, sprites.json, level.json, tiles.png, background-wall.png', function() {
         // Sprites sheets can be created manually
         Q.sheet('tiles', 'tiles.png', { tilew: 32, tileh: 32 });
 
         // Or from a .json asset that defines sprite locations
-        Q.compileSheets('sprites.png', 'sprites.json');
+        Q.compileSheets('sprites128.png', 'sprites.json');
 
         // Finally, call stageScene to run the game
         Q.stageScene('start', 1, { label: "Press Space to Play" });
