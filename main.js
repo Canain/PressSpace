@@ -116,7 +116,7 @@ $(document).ready(function() {
 
     Q.Sprite.extend("End", {
         init: function(p) {
-            this._super(p, { sheet: 'tower'});
+            this._super(p, { sheet: 'tower', scale: 1/2});
         }
     });
 
@@ -223,9 +223,9 @@ $(document).ready(function() {
     // Q.load can be called at any time to load additional assets
     // assets that are already loaded will be skipped
     // The callback will be triggered when everything is loaded
-    Q.load('sprites128.png, sprites.json, level.json, tiles.png, background-wall.png', function() {
+    Q.load('sprites128.png, sprites.json, level.json, tiles128.png, background-wall.png', function() {
         // Sprites sheets can be created manually
-        Q.sheet('tiles', 'tiles.png', { tilew: 32, tileh: 32 });
+        Q.sheet('tiles', 'tiles128.png', { tilew: 128, tileh: 128 });
 
         // Or from a .json asset that defines sprite locations
         Q.compileSheets('sprites128.png', 'sprites.json');
