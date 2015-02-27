@@ -2240,7 +2240,7 @@ Quintus["2D"] = function(Q) {
     },
 
     extend: {
-      follow: function(sprite,directions,boundingBox) {
+      follow: function(spr   ite,directions,boundingBox) {
         this.off('poststep',this.viewport,'follow');
         this.viewport.directions = directions || { x: true, y: true };
         this.viewport.following = sprite;
@@ -2358,10 +2358,10 @@ Quintus["2D"] = function(Q) {
 
     init: function(props) {
       this._super(props,{
-        tileW: 32,
-        tileH: 32,
-        blockTileW: 10,
-        blockTileH: 10,
+        tileW: 128,
+        tileH: 128,
+        blockTileW: 128,
+        blockTileH: 128,
         type: 1,
         renderAlways: true
       });

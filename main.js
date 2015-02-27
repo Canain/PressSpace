@@ -13,7 +13,7 @@ $(document).ready(function() {
     Q.component("pressSpaceControls", {
         defaults: {
             speed: 200,
-            jumpSpeed: -300,
+            jumpSpeed: -550,
             collisions: []
         },
 
@@ -94,7 +94,7 @@ $(document).ready(function() {
             this._super(p, {
                 sheet: "player",
                 x: 0,
-                y: 48
+                y: 20
             });
 
             // The `2d` component adds in default 2d collision detection and kinetics (velocity, gravity)
@@ -116,7 +116,7 @@ $(document).ready(function() {
 
     Q.Sprite.extend("End", {
         init: function(p) {
-            this._super(p, { sheet: 'tower', scale: 1/2});
+            this._super(p, { sheet: 'tower'});
         }
     });
 
@@ -179,6 +179,34 @@ $(document).ready(function() {
         }
     });
 
+    Q.Component("aiTracking",{
+        defaults: { speed: 100, direction: 'left'},
+
+        added: function() {
+            var p = this.entity.p;
+
+            Q._defaults(p, this.defaults);
+        },
+
+        extend: {
+            follow: function(player) {
+
+                }
+        },
+
+        step: function() {
+
+        }
+    });
+
+    Q.Sprite.extend("TrackingEnemy",{
+        init: function(p) {
+            this._super(p, { sheet: 'enemy', vx: 100});
+
+
+        }
+    });
+
     Q.scene('start', function(stage) {
         startStage = true;
 
@@ -214,9 +242,9 @@ $(document).ready(function() {
         // Moveable viewport for stage that follows the player
         stage.add("viewport").follow(player);
 
-        stage.insert(new Q.MovingEnemy({ x: 800, y: 0 }));
+        stage.insert(new Q.MovingEnemy({ x: 800, y: 128 }));
 
-        stage.insert(new Q.End({ x: (titleLayer.p.tiles[2].length - 3/2) * 32, y: 34 }));
+        stage.insert(new Q.End({ x: (titleLayer.p.tiles[2].length - 3/2) * 128, y: 128*6.5}));
     });
 
     // ## Asset Loading and Game Launch
@@ -225,7 +253,7 @@ $(document).ready(function() {
     // The callback will be triggered when everything is loaded
     Q.load('sprites128.png, sprites.json, level.json, tiles128.png, background-wall.png', function() {
         // Sprites sheets can be created manually
-        Q.sheet('tiles', 'tiles128.png', { tilew: 128, tileh: 128 });
+        Q.sheet('tiles', 'tiles128.png', { tilew: 128, tileh: 128})
 
         // Or from a .json asset that defines sprite locations
         Q.compileSheets('sprites128.png', 'sprites.json');
